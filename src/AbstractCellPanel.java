@@ -1,8 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
+import java.awt.event.MouseEvent;
+import javax.swing.JPanel;
 
 /**
- * @author Shepherd Sims, Andrew Baca, Trip Calihan, Peter Blair
+ * @author Shepherd Sims, Andrew Bacca, Trip Calihan, Peter Blair
  * File: AbstractCellPanel.java
  * 
  * Implements the Cell Panel class and defines responsibilities.
@@ -12,14 +15,17 @@ import java.awt.*;
 
 public class AbstractCellPanel extends JPanel{
 	public Cell cell;
+	private ViewInformer VI;
 	
 	/**
 	 * Constructor for AbstractCellPanel.
 	 * @param a cell.
 	 */
 	
-	public AbstractCellPanel(Cell c) {
+	public AbstractCellPanel(Cell c, ViewInformer vi) {
 		cell = c;
+		VI = vi;
+		addMouseListener(new AbstractCellPanel.PanelListener(this));
 	}
 	
 	/**
@@ -39,5 +45,17 @@ public class AbstractCellPanel extends JPanel{
 	
 	public Cell getCell() {
 		return cell;
+	}
+	
+	private class PanelListener extends java.awt.event.MouseAdapter {
+	    private AbstractCellPanel panel;
+	    
+	    private PanelListener(AbstractCellPanel acp) {
+	      panel = acp;
+	    }
+	    
+	    public void mousePressed(MouseEvent e) {
+	      VI.panelPressed(panel);
+	    }
 	}
 }

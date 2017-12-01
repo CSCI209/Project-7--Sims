@@ -30,11 +30,14 @@ public class AppView extends javax.swing.JFrame
   private ArrayList<AbstractCellPanel> tableauPanels;
   private JButton button;
   private FreeCellGame game;
+  private AbstractCellPanel selectedPanel;
+  private ViewInformer VI;
   
   public AppView(FreeCellGame g)
   {
     setTitle("Free Cell");
     game = g;
+    VI = new AppView.AppViewInformer();
     Container c = getContentPane();
     GridBagLayout layout = new GridBagLayout();
     c.setLayout(layout);
@@ -103,14 +106,14 @@ public class AppView extends javax.swing.JFrame
     gbc.gridy = 1;
     gbc.gridwidth = 1;
     for (int i = 0; i < 4; i++) {
-      freeCellPanels.add(new TopCellPanel(game.getFreeCell(i)));
+      freeCellPanels.add(new TopCellPanel(game.getFreeCell(i), VI));
       freeCellPanels.get(i).setBackground(DefaultColor);
       layout.setConstraints(freeCellPanels.get(i), gbc);
       gbc.gridx += 1;
       c.add(freeCellPanels.get(i));
     }
     for (int i = 0; i < 4; i++) {
-    		homeCellPanels.add(new TopCellPanel(game.getFreeCell(i)));
+    		homeCellPanels.add(new TopCellPanel(game.getFreeCell(i), VI));
         homeCellPanels.get(i).setBackground(DefaultColor);
         layout.setConstraints(homeCellPanels.get(i), gbc);
         gbc.gridx += 1;
@@ -134,7 +137,7 @@ public class AppView extends javax.swing.JFrame
     gbc.gridx = 0;
     gbc.gridy = 2;
     for (int i = 0; i < 8; i++) {
-      tableauPanels.add(new TableauPanel(game.getTableau(i)));
+      tableauPanels.add(new TableauPanel(game.getTableau(i), VI));
       tableauPanels.get(i).setBackground(DefaultColor);
       layout.setConstraints(tableauPanels.get(i), gbc);
       gbc.gridx += 1;
@@ -142,4 +145,33 @@ public class AppView extends javax.swing.JFrame
     }
   }
   
+
+  private class AppViewInformer implements ViewInformer {
+	    private AppViewInformer() {}
+	    
+	    public void panelPressed(AbstractCellPanel panel) { 
+	    	if (game.cantMove()) {
+	        javax.swing.JOptionPane.showMessageDialog(AppView.this, "No more available");
+	    	} 
+	    	else if (game.allDone()) {
+		          javax.swing.JOptionPane.showMessageDialog(AppView.this, "You win!");
+	    	}
+	    	else if (selectedPanel == null) {
+	        selectedPanel = panel;
+	    	} 
+	    	else if (selectedPanel == panel) {
+	    		selectedPanel = null;
+	    	}
+	    	else if (game.moveCard(selectedPanel.getCell(), panel.getCell())) {
+		        selectedPanel.repaint();
+		        panel.repaint();
+		        selectedPanel = null;
+	    	} 
+	    	else {
+	        selectedPanel = null;
+	        javax.swing.JOptionPane.showMessageDialog(AppView.this, "Illegal move");
+	    	}
+	    }
+  }
+
 }

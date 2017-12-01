@@ -17,8 +17,8 @@ public class TableauPanel extends AbstractCellPanel{
 	 * @param a Cell (c).
 	 */
 	
-	public TableauPanel(Cell c) {
-		super(c);
+	public TableauPanel(Cell c, ViewInformer vi) {
+		super(c, vi);
 	}
 	
 	/**
