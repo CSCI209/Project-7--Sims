@@ -21,21 +21,18 @@ public class HomeCell extends AbstractCell
 	 */
 	public boolean canAddFrom(Cell c) {
 		
-		if (super.canAddFrom(c)) {
-			return true;
+		if (!super.canAddFrom(c)) {
+			return false;
 		}
 		
 		Card topCard = c.seeTop();
 		if (c.isEmpty()) {
-			if (topCard.getRank()!=1) {
-				return false;
+			if (topCard.getRank()==1) {
+				return true;
 			}
-			return true;
+			return false;
 		}
 		Card bottomCard = seeTop();
-		if ((topCard.sameSuit(bottomCard)) && (topCard.oneLarger(bottomCard)))
-			return true;
-		else
-			return false;
+		return ((topCard.sameSuit(bottomCard)) && (topCard.oneLarger(bottomCard)));
 	}
 }

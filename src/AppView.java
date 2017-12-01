@@ -36,6 +36,7 @@ public class AppView extends javax.swing.JFrame
   public AppView(FreeCellGame g)
   {
     setTitle("Free Cell");
+    selectedPanel = null;
     game = g;
     VI = new AppView.AppViewInformer();
     Container c = getContentPane();
@@ -58,11 +59,9 @@ public class AppView extends javax.swing.JFrame
     gbc.gridy = 3;
     layout.setConstraints(button, gbc);
     c.add(button);
-    
+
     gbc.gridwidth = 4;
-    gbc.gridheight = 1;
-    
-    
+    gbc.gridheight = 1;    
     javax.swing.JLabel Label1 = new javax.swing.JLabel("Free Cells");
     Label1.setForeground(DefaultColor);
     gbc.gridwidth = 4;

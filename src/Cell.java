@@ -76,10 +76,4 @@ public interface Cell extends Iterable<Card>
    * @return topmost Card in cell.
    */
   public Card seeTop();
-  
-  /**
-   * Determines if cell "c" is an instance of HomeCell
-   * @return true if it is or otherwise false
-   */
-    public boolean isHomeCell(Cell c);
 }

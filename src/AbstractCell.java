@@ -23,18 +23,6 @@ public class AbstractCell implements Cell, Iterable<Card> {
 	}
 	
 	/**
-	 * Determines if cell "c" is an instance of HomeCell
-	 * @return true if it is or otherwise false
-	 */
-	public boolean isHomeCell(Cell c) {
-		if (c instanceof HomeCell)
-			return true;
-		else
-			return false;
-					
-	}
-	
-	/**
 	 * Determines whether the card can be added from the pile
 	 * @return true if it meets the conditions or false otherwise
 	 */
@@ -58,8 +46,7 @@ public class AbstractCell implements Cell, Iterable<Card> {
 			add(c.remove());
 			return true;
 		}
-		else
-			return false;
+		return false;
 	}
 	
 	/**
