@@ -163,9 +163,9 @@ public class AppView extends javax.swing.JFrame
 	    		selectedPanel = null;
 	    	}
 	    	else if (game.moveCard(selectedPanel.getCell(), panel.getCell())) {
-		        selectedPanel.repaint();
-		        panel.repaint();
-		        selectedPanel = null;
+	    		selectedPanel.repaint();
+	    		panel.repaint();
+	    		selectedPanel = null;
 	    	} 
 	    	else {
 	        selectedPanel = null;
