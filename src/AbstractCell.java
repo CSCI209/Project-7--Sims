@@ -10,7 +10,7 @@ import java.util.*;
 
 public class AbstractCell implements Cell, Iterable<Card> {
 	
-	private ArrayList<Card> cards;
+	private List<Card> cards;
 	private int maxSize;
 	
 	/**
@@ -18,7 +18,7 @@ public class AbstractCell implements Cell, Iterable<Card> {
 	 * @param size
 	 */
 	public AbstractCell(int size) {
-		cards = new ArrayList<Card>();
+		cards = new ArrayList();
 		maxSize = size;
 	}
 	
@@ -96,7 +96,7 @@ public class AbstractCell implements Cell, Iterable<Card> {
 	 * @throws IllegalArgumentException if the index is out of range
 	 */
 	public Card get(int i) {
-		if (i< 0 || i>cards.size())
+		if (i< 0 || i>=size())
 			throw new IllegalArgumentException("Index out of range");
 		else
 			return cards.get(i);
@@ -107,10 +107,9 @@ public class AbstractCell implements Cell, Iterable<Card> {
 	 * @throws IllegalStateException if the cell is empty
 	 */
 	public Card seeTop() {
-		if (cards.isEmpty() == true)
+		if (isEmpty() == true)
 				throw new IllegalStateException("Cell is Empty");
-		else
-			return cards.get(cards.size()-1);
+		return cards.get(cards.size()-1);
 	}
 	
 	/**

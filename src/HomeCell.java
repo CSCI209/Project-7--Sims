@@ -9,7 +9,7 @@ public class HomeCell extends AbstractCell
 	 * Recalls the constructor from AbstractCell. 
 	 * HomeCells will always be built with array lengths of 13.
 	 */
-	public HomeCell() {
+	public HomeCell() { 
 			super(13);
 	}
 	
@@ -26,13 +26,16 @@ public class HomeCell extends AbstractCell
 		}
 		
 		Card topCard = c.seeTop();
-		if (c.isEmpty()) {
-			if (topCard.getRank()==1) {
+		if (isEmpty()) {
+			if (topCard.getRank() == 1) {
 				return true;
 			}
 			return false;
 		}
 		Card bottomCard = seeTop();
-		return ((topCard.sameSuit(bottomCard)) && (topCard.oneLarger(bottomCard)));
+		if (topCard.sameSuit(bottomCard) && topCard.oneLarger(bottomCard)) {
+			return true;
+		}
+		return false;
 	}
 }

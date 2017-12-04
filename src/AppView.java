@@ -32,12 +32,15 @@ public class AppView extends javax.swing.JFrame
   private FreeCellGame game;
   private AbstractCellPanel selectedPanel;
   private ViewInformer VI;
+  private int moveCount;
+  private int HighScore;
   
   public AppView(FreeCellGame g)
   {
     setTitle("Free Cell");
     selectedPanel = null;
     game = g;
+    moveCount = 0;
     VI = new AppView.AppViewInformer();
     Container c = getContentPane();
     GridBagLayout layout = new GridBagLayout();
@@ -50,6 +53,7 @@ public class AppView extends javax.swing.JFrame
         public void actionPerformed(ActionEvent e){
     		button.setText("New Game");
         	game.reset();
+        	moveCount = 0;
         	repaint();
             }
     });
@@ -83,6 +87,17 @@ public class AppView extends javax.swing.JFrame
     layout.setConstraints(Label2, gbc);
     c.add(Label2);
     
+    javax.swing.JLabel MoveLabel = new javax.swing.JLabel("Move Count: ");
+    gbc.gridwidth = 4;
+    gbc.gridx = 2;
+    MoveLabel.setOpaque(true);
+    MoveLabel.setBackground(DefaultColor);
+    layout.setConstraints(MoveLabel, gbc);
+    c.add(MoveLabel);
+    
+    JTextArea updateField = new JTextArea();
+    
+    
     TopCellPanels(gbc, layout, c);
     TableauPanels(gbc, layout, c);
   }
@@ -112,7 +127,7 @@ public class AppView extends javax.swing.JFrame
       c.add(freeCellPanels.get(i));
     }
     for (int i = 0; i < 4; i++) {
-    		homeCellPanels.add(new TopCellPanel(game.getFreeCell(i), VI));
+    		homeCellPanels.add(new TopCellPanel(game.getHomeCell(i), VI));
         homeCellPanels.get(i).setBackground(DefaultColor);
         layout.setConstraints(homeCellPanels.get(i), gbc);
         gbc.gridx += 1;
@@ -150,7 +165,7 @@ public class AppView extends javax.swing.JFrame
 	    
 	    public void panelPressed(AbstractCellPanel panel) { 
 	    	if (game.cantMove()) {
-	        javax.swing.JOptionPane.showMessageDialog(AppView.this, "No more available");
+	        javax.swing.JOptionPane.showMessageDialog(AppView.this, "No more moves available");
 	    	} 
 	    	else if (game.allDone()) {
 		          javax.swing.JOptionPane.showMessageDialog(AppView.this, "You win!");
@@ -161,10 +176,11 @@ public class AppView extends javax.swing.JFrame
 	    	else if (selectedPanel == panel) {
 	    		selectedPanel = null;
 	    	}
-	    	else if (game.moveCard(selectedPanel.getCell(), panel.getCell())) {
+	    	else if (game.moveCard(selectedPanel.getCell(), panel.getCell())) { 
 	    		selectedPanel.repaint();
 	    		panel.repaint();
 	    		selectedPanel = null;
+	    		moveCount += 1;
 	    	} 
 	    	else {
 	        selectedPanel = null;

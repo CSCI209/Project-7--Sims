@@ -10,7 +10,7 @@ public class Tableau extends AbstractCell {
 	
 	/**
 	 * Calls on its superclass's (AbstractCell's) constructor.
-	 * Tableaux will all have array lenghts of 13.
+	 * Tableaux will all have array lengths of 13.
 	 */
 	public Tableau() {
 		super(13);
@@ -23,10 +23,10 @@ public class Tableau extends AbstractCell {
 	 * @return it either returns isEmpty or the sameColor & oneLarger methods from Card.java
 	 */
 	public boolean canAddFrom(Cell c) {
-		if (! super.canAddFrom(c)) {
+		if (!super.canAddFrom(c)) {
 			return false;
 		}
-		cardsToMove = new ArrayList<Card>();
+		cardsToMove = new ArrayList();
 		Card top = c.seeTop();
 		cardsToMove.add(top);
 		Card myCard = null;
@@ -35,14 +35,15 @@ public class Tableau extends AbstractCell {
 		int i = c.size() - 2;
 		while (i >= 0) {
 			Card next = c.get(i);
-			if ((!isEmpty()) && (myCard.getRank() - next.getRank() < 1))
+			if ((!isEmpty()) && (myCard.getRank() - next.getRank() < 1)) {
 				break;
-			if ((top.sameColor(next)) || (! next.oneLarger(top))) break;
+			}
+			if ((top.sameColor(next)) || (!next.oneLarger(top))) break;
 			cardsToMove.add(next);
 			top = next;
 			i--;
 		}
-		return (isEmpty() || (!top.sameColor(myCard) && myCard.oneLarger(top)));
+		return (isEmpty()) || ((!top.sameColor(myCard)) && (myCard.oneLarger(top)));
 	}
 	
 	/**

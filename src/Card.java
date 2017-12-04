@@ -137,7 +137,7 @@ public class Card implements Comparable<Card>{
      * @return true if the cards are the same color or false otherwise
      */
     public boolean sameColor(Card other) {
-    		return color.equals(color);
+    		return color.equals(other.color);
     }
     
     /**

@@ -8,17 +8,17 @@ import java.util.*;
  */
 public class FreeCellGame
 {
-	private ArrayList<Cell> freeCells;
-	private ArrayList<Cell> homeCells;
-	private ArrayList<Cell> tableaux;
+	private List<Cell> freeCells;
+	private List<Cell> homeCells;
+	private List<Cell> tableaux;
   
 	/**
 	 * Constructor method for the class, creates the different decks/piles
 	 */
 	public FreeCellGame() {
-		freeCells = new ArrayList<Cell>();
-		homeCells = new ArrayList<Cell>();
-		tableaux = new ArrayList<Cell>();
+		freeCells = new ArrayList();
+		homeCells = new ArrayList();
+		tableaux = new ArrayList();
 		for (int i=0; i<4; i++) {
 			freeCells.add(new FreeCell());
 			homeCells.add(new HomeCell());
@@ -60,7 +60,7 @@ public class FreeCellGame
 	 * @return the cell at designated index position
 	 */
 	public Cell getFreeCell(int i) {
-		return (Cell)freeCells.get(i);
+		return freeCells.get(i);
 	}
   
 	/**
@@ -69,7 +69,7 @@ public class FreeCellGame
 	 * @return the cell at designated index position
 	 */
 	public Cell getHomeCell(int i) {
-		return (Cell)homeCells.get(i);
+		return homeCells.get(i);
 	}
   
 	/**
@@ -78,7 +78,7 @@ public class FreeCellGame
 	 * @return the cell at designated index position
 	 */
 	public Cell getTableau(int i) {
-		return (Cell)tableaux.get(i);
+		return tableaux.get(i);
 	}
   
 	/**
@@ -110,12 +110,12 @@ public class FreeCellGame
 	public boolean cantMove() {
 		Iterator<Cell> iter2;
 		for(Iterator<Cell> iter = freeCells.iterator(); iter.hasNext(); iter2.hasNext()) {
-			Cell free = (Cell)iter.next();
+			Cell free = iter.next();
 			if (free.isEmpty()) {
 				return false;
 			}
 			iter2 = homeCells.iterator();
-			Cell home = (Cell) iter2.next();
+			Cell home = iter2.next();
 			if (home.canAddFrom(free)) {
 				return false;
 			}
