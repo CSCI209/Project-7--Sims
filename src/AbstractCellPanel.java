@@ -14,7 +14,7 @@ import javax.swing.JPanel;
  */
 
 public class AbstractCellPanel extends JPanel{
-	public Cell cell;
+	protected Cell cell;
 	private ViewInformer VI;
 	
 	/**

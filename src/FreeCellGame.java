@@ -11,6 +11,7 @@ public class FreeCellGame
 	private List<Cell> freeCells;
 	private List<Cell> homeCells;
 	private List<Cell> tableaux;
+	private int counter = 0;
   
 	/**
 	 * Constructor method for the class, creates the different decks/piles
@@ -34,6 +35,7 @@ public class FreeCellGame
 	public void reset() {
 		Deck deck = new Deck();
 		deck.shuffle();
+		counter = 0;
 		for (Cell c:freeCells)
 			c.clear();
 		for (Cell c:homeCells)
@@ -88,7 +90,16 @@ public class FreeCellGame
 	 * @return boolean true if possible, false if not
 	 */
 	public boolean moveCard(Cell cell1, Cell cell2) {
-	  return cell2.addFrom(cell1);
+		if (cell2.addFrom(cell1)){
+			counter++;
+			return true;
+		}
+		counter++;
+		return false;
+	}
+	
+	public int getCount() {
+		return counter;
 	}
   
 	/**
@@ -108,31 +119,29 @@ public class FreeCellGame
 	 * possible, otherwise it returns true, indicating that no move is possible 
 	 */
 	public boolean cantMove() {
-		Iterator<Cell> iter2;
-		for(Iterator<Cell> iter = freeCells.iterator(); iter.hasNext(); iter2.hasNext()) {
-			Cell free = iter.next();
+		for(Cell free:freeCells) {
 			if (free.isEmpty()) {
 				return false;
 			}
-			iter2 = homeCells.iterator();
-			Cell home = iter2.next();
-			if (home.canAddFrom(free)) {
-				return false;
+			
+			for (Cell home:homeCells) {
+				if (home.canAddFrom(free)) {
+					return false;
+				}
 			}
 		}
-		for (int i = 0; i < tableaux.size();i++) {
-			Cell tab = tableaux.get(i);
+		for (Cell tabCell:tableaux) {
 			
 			for (Cell free : freeCells) {
-				if (tab.canAddFrom(free))
+				if (tabCell.canAddFrom(free))
 					return false;
 			}
 			for (Cell home:homeCells) {
-				if (home.canAddFrom(tab))
+				if (home.canAddFrom(tabCell))
 					return false;
 			}
-			for (int i2 = 0; i2 < tableaux.size();i2++) {
-				if (i!= i2 && tableaux.get(i2).canAddFrom(tab))
+			for (Cell tabCell2:tableaux) {
+				if (tabCell!= tabCell2 && tabCell.canAddFrom(tabCell2))
 					return false;
 			}
 		}

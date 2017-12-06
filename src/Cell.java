@@ -36,6 +36,7 @@ public interface Cell extends Iterable<Card>
   /**
    * Removes topmost card from cell and returns it.
    * @return removed card.
+   * @throws IllegalArgumentException if the cell is empty
    */
   public Card remove();
   
@@ -43,6 +44,7 @@ public interface Cell extends Iterable<Card>
    * Removes card at index from cell and returns it.
    * @param int i, for card's point index in cell.
    * @return removed card.
+   * @throws IllegalArgumentException if the index is out of range
    */
   public Card remove(int paramInt);
   
@@ -50,6 +52,7 @@ public interface Cell extends Iterable<Card>
    * Returns card at index from cell.
    * @param int i, for card's point index in cell.
    * @return indexed card.
+   * @throws IllegalArgumentException if the index is out of range
    */  
   public Card get(int paramInt);
   

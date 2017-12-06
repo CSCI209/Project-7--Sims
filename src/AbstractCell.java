@@ -123,14 +123,11 @@ public class AbstractCell implements Cell, Iterable<Card> {
 	/**
 	 * toString method displaying text version of what's happening
 	 * @return the string representation of the current card plus a new line
-	 * @return the size of the list, representing the cards
-	 * @return true if the cards are in order or false otherwise
 	 */
 	public String toString() {
-		Card currentCard = null;
 		String stringToReturn = "";
-		for (Iterator<Card> iter = iterator(); iter.hasNext(); stringToReturn = stringToReturn + currentCard + "\n") {
-			currentCard = (Card)iter.next();
+		for (Card card:this) {
+			stringToReturn = stringToReturn + card + "\n";
 		}
 		return stringToReturn;
 	}

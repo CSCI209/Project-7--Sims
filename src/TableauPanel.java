@@ -34,7 +34,7 @@ public class TableauPanel extends AbstractCellPanel{
 	public void paintComponent(Graphics graphics) {
 		super.paintComponent(graphics);
 		int y = 0;
-	    if ((cell == null) || (cell.isEmpty())) {
+	    if (cell.isEmpty()) {
 	        Icon image = Card.getBack();
 	        graphics.setColor(new java.awt.Color(100, 100, 0));
 	        int x = (getWidth() - image.getIconWidth()) / 2;
