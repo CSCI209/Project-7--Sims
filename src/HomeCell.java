@@ -15,7 +15,7 @@ public class HomeCell extends AbstractCell
 	
 	/**
 	 * Determines if the conditions are met for adding a card from cell c
-	 * @param c
+	 * @param c - cell to check if a card can be added from
 	 * @return false if the following conditions are not met, which determine whether a card can be added,
 	 * otherwise it returns true, indicating that it can be added
 	 */

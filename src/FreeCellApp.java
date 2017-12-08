@@ -1,7 +1,7 @@
 import javax.swing.JFrame;
 
 /**
- * @author lambertk, Shepard Sims, Andrew Baca, Trip Calihan, Peter Blair
+ * @author lambertk, Shepherd Sims, Andrew Baca, Trip Calihan, Peter Blair
  * File: FreeCellApp.java
  * 
  * Main method for a GUI-based game of Free Cell

@@ -49,7 +49,7 @@ public class Tableau extends AbstractCell {
 	/**
 	 * Checks canAddFrom to see if conditions are met, then takes a card from cardsToMove and moves it
 	 * while reducing the size of cardsToMove pile by 1
-	 * @param a Cell (c).
+	 * @param c - cell to add card(s) from
 	 * @return true if it successfully adds a card or otherwise false
 	 */
 	public boolean addFrom(Cell c) {

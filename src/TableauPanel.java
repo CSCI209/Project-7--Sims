@@ -13,8 +13,9 @@ import java.awt.*;
 public class TableauPanel extends AbstractCellPanel{
 	
 	/**
-	 * Calls on its super, AbstractPanel, for constructor.
-	 * @param a Cell (c).
+	 * Constructor for TableauPanel, calling its super's constructor
+	 * @param c - a cell
+	 * @param vi - ViewInformer for the cell
 	 */
 	
 	public TableauPanel(Cell c, ViewInformer vi) {

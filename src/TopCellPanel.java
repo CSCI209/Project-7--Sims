@@ -14,7 +14,8 @@ public class TopCellPanel extends AbstractCellPanel{
 	
 	/**
 	 * Calls on its super, AbstractPanel, for constructor.
-	 * @param a Cell (c).
+	 * @param a Cell (c)
+	 * @param vi - ViewInformer for the cellPanel
 	 */
 	
 	public TopCellPanel(Cell c, ViewInformer vi) {

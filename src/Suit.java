@@ -27,6 +27,10 @@ public class Suit implements Comparable<Suit>{
     private int order;
     private String name;
 
+    /** Creates a new Suit
+     * @param ord - order of suit
+     * @param nm - name of suit, a string
+     */
     private Suit(int ord, String nm){
         name = nm;
         order = ord;

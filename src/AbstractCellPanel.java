@@ -19,7 +19,8 @@ public class AbstractCellPanel extends JPanel{
 	
 	/**
 	 * Constructor for AbstractCellPanel.
-	 * @param a cell.
+	 * @param c - a cell
+	 * @param vi - ViewInformer for the cell
 	 */
 	
 	public AbstractCellPanel(Cell c, ViewInformer vi) {

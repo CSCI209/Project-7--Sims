@@ -85,8 +85,8 @@ public class FreeCellGame
   
 	/**
 	 * Moves a card from one cell to the other
-	 * @param cell1
-	 * @param cell2
+	 * @param cell1 the cell to move card from 
+	 * @param cell2 the cell to move card to
 	 * @return boolean true if possible, false if not
 	 */
 	public boolean moveCard(Cell cell1, Cell cell2) {
@@ -98,6 +98,10 @@ public class FreeCellGame
 		return false;
 	}
 	
+	/**
+	 * returns number of moves taken in current game, including penalties
+	 * @return int counter - number of moves taken in current game, including penalties
+	 */
 	public int getCount() {
 		return counter;
 	}
