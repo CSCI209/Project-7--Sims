@@ -175,10 +175,15 @@ public class AppView extends javax.swing.JFrame
 	  }
   }
   
-
+  /**
+   * Implements ViewInformer
+   */
   private class AppViewInformer implements ViewInformer {
 	  private AppViewInformer() {}
-	    
+	  /**
+	   * informs the game on what to do if a panel is clicked by the user
+	   * @param panel - Abstract Cell Panel
+	   */  
 	  public void panelPressed(AbstractCellPanel panel) { 
 	    	
 		  if (game.cantMove()) {

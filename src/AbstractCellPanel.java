@@ -47,12 +47,26 @@ public class AbstractCellPanel extends JPanel{
 		return cell;
 	}
 	
+	/**
+	 * Creates the Panel Listener Class and defines responsibilities.
+	 */
+	
 	private class PanelListener extends java.awt.event.MouseAdapter {
 	    private AbstractCellPanel panel;
+	    
+		/**
+		 * Constructor for PanelListerner.
+		 * @param acp - AbstractCellPanel
+		 */
 	    
 	    private PanelListener(AbstractCellPanel acp) {
 	      panel = acp;
 	    }
+	    
+		/**
+		 * method for a panel being clicked in the gui  
+		 * @param e - MouseEvent
+		 */	 
 	    
 	    public void mousePressed(MouseEvent e) {
 	      VI.panelPressed(panel);
